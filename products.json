@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Mango - Palton CHILLY",
+    "id": 1,
+    "type": "geci si paltoane",
+    "color": "yellow",
+    "price": 299.99,
+    "brand": "Mango",
+    "photos": [
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/palton-mango-galben-1.jpg",
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/palton-mango-galben-2.jpg"
+    ]
+  },
+  {
+    "title": "Mango - Pantaloni FLARE",
+    "id": 2,
+    "type": "pantaloni",
+    "color": "black",
+    "price": 89.99,
+    "brand": "Mango",
+    "photos": [
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/pantaloni-flare-negri-1.jpg",
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/pantaloni-flare-negri-2.jpg"
+    ]
+  },
+  {
+    "title": "Mango - Palton CHILLY",
+    "id": 3,
+    "type": "geci si paltoane",
+    "color": "yellow",
+    "price": 299.99,
+    "brand": "Mango",
+    "photos": [
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/palton-mango-galben-1.jpg",
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/palton-mango-galben-2.jpg"
+    ]
+  },
+  {
+    "title": "Mango - Pantaloni FLARE",
+    "id": 4,
+    "type": "pantaloni",
+    "color": "black",
+    "price": 89.99,
+    "brand": "Mango",
+    "photos": [
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/pantaloni-flare-negri-1.jpg",
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/pantaloni-flare-negri-2.jpg"
+    ]
+  },
+  {
+    "title": "Mango - Palton CHILLY",
+    "id": 5,
+    "type": "geci si paltoane",
+    "color": "yellow",
+    "price": 299.99,
+    "brand": "Mango",
+    "photos": [
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/palton-mango-galben-1.jpg",
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/palton-mango-galben-2.jpg"
+    ]
+  },
+  {
+    "title": "Mango - Pantaloni FLARE",
+    "id": 6,
+    "type": "pantaloni",
+    "color": "black",
+    "price": 89.99,
+    "brand": "Mango",
+    "photos": [
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/pantaloni-flare-negri-1.jpg",
+      "https://moda-bella.s3.eu-west-3.amazonaws.com/photos/pantaloni-flare-negri-2.jpg"
+    ]
+  }
+]
