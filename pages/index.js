@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import products from "../products.json";
 import { ProductGridItem } from "../components/ProductGridItem";
+import { Navigation } from "../components/Navigation";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         <title>Moda Bella</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Navigation />
       <main className={styles.main}>
         <h1 className={styles.title}>MODA BELLA</h1>
         <div className={styles.grid}>
