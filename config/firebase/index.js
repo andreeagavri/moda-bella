@@ -1,11 +1,12 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB-id7FfQ5eMUQTHl0hk_RQbcP7R6C5jnk",
   authDomain: "moda-bella-d08a3.firebaseapp.com",
   databaseURL:
-    "https://moda-bella-d08a3-default-rtdb.europe-west1.firebasedatabase.app",
+    "https://moda-bella-d08a3-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "moda-bella-d08a3",
   storageBucket: "moda-bella-d08a3.appspot.com",
   messagingSenderId: "851500071831",
@@ -19,5 +20,6 @@ if (!firebase.apps.length) {
 
 const app = firebase.app();
 const auth = firebase.auth();
+const db = firebase.firestore();
 
-export { app, auth };
+export { app, auth, db };
