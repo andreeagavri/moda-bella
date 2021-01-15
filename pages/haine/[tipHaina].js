@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { NavMenu } from "../../components/NavMenu";
 
 export default function Haine() {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,7 @@ export default function Haine() {
   }
 
   useEffect(() => {
-    if (products.length === 0 && haina) {
+    if (haina) {
       db.collection("products")
         .where("type", "==", haina)
         .onSnapshot((snap) => {
@@ -53,6 +54,7 @@ export default function Haine() {
         <Link href="/">
           <h1 className={styles.title}>MODA BELLA</h1>
         </Link>
+        <NavMenu></NavMenu>
         <h1>{haina}</h1>
         <div className={styles.grid}>
           {products.map((prod) => (

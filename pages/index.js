@@ -5,18 +5,9 @@ import { ProductGridItem } from "../components/ProductGridItem";
 import { Navigation } from "../components/Navigation";
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
+import { NavMenu } from "../components/NavMenu";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    db.collection("products").onSnapshot((snap) => {
-      const dbProducts = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setProducts(dbProducts);
-    });
-  });
   return (
     <div className={styles.container}>
       <Head>
@@ -26,11 +17,7 @@ export default function Home() {
       <Navigation />
       <main className={styles.main}>
         <h1 className={styles.title}>MODA BELLA</h1>
-        <div className={styles.grid}>
-          {products.map((prod) => (
-            <ProductGridItem product={prod} />
-          ))}
-        </div>
+        <NavMenu></NavMenu>
       </main>
     </div>
   );

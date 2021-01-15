@@ -6,7 +6,7 @@ import { Navigation } from "../../components/Navigation";
 import { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import Link from "next/link";
-
+import { NavMenu } from "../../components/NavMenu";
 export default function ToateHainele() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -41,17 +41,7 @@ export default function ToateHainele() {
         <Link href="/">
           <h1 className={styles.title}>MODA BELLA</h1>
         </Link>
-        <div>
-          <Link href={"/brands/mango"}>
-            <div>Mango</div>
-          </Link>
-          <Link href={"/brands/only"}>
-            <div>Only</div>
-          </Link>
-          <Link href={"/brands/levis"}>
-            <div>Levi's</div>
-          </Link>
-        </div>
+        <NavMenu></NavMenu>
 
         <div className={styles.grid}>
           {products.map((prod) => (

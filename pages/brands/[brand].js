@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import { NavMenu } from "../../components/NavMenu";
 export default function BrandPage() {
   const [products, setProducts] = useState([]);
 
@@ -15,6 +15,13 @@ export default function BrandPage() {
     levis: "Levi's",
     only: "Only",
     mango: "Mango",
+    nakd: "Na-Kd",
+    missguided: "Missguided",
+    gap: "Gap",
+    motivi: "Motivi",
+    moschino: "Moschino",
+    veromoda: "Vero Moda",
+    liujo: "Liu Jo",
   };
 
   const router = useRouter();
@@ -26,7 +33,7 @@ export default function BrandPage() {
   }
 
   useEffect(() => {
-    if (products.length === 0 && brandName) {
+    if (brandName) {
       db.collection("products")
         .where("brand", "==", brandName)
         .onSnapshot((snap) => {
@@ -49,6 +56,7 @@ export default function BrandPage() {
         <Link href="/">
           <h1 className={styles.title}>MODA BELLA</h1>
         </Link>
+        <NavMenu></NavMenu>
         <h1>{brandName}</h1>
         <div className={styles.grid}>
           {products.map((prod) => (
