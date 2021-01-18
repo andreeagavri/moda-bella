@@ -148,7 +148,7 @@
   width: 100%;
   background-color: rgb(254, 239, 255);
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding: 10px;
 }
 .navlink {
@@ -278,4 +278,29 @@
 
 .dropdown:hover .dropdownContent {
   display: block;
+}
+
+.userDropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  margin-left: -100px;
+  width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 10px 5px;
+  z-index: 1;
+  float: none;
+}
+
+.userNavbar {
+  float: left;
+  overflow: hidden;
+  user-select: none;
+}
+
+.userNavbar:hover .userDropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
 }

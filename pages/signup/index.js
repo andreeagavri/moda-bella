@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Navigation } from "../../components/Navigation";
 import React, { useState } from "react";
 import { auth } from "../../config/firebase";
+import { db } from "../../config/firebase";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
   return (
@@ -31,11 +33,28 @@ const INITIAL_STATE = {
 };
 function SignUpForm() {
   const [credentials, setCredentials] = useState(INITIAL_STATE);
+
+  const router = useRouter();
+  const createUser = (user) => {
+    return db
+      .collection("users")
+      .doc(user.uid)
+      .set(user)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const onSubmit = (event) => {
     const { username, email, passwordOne } = credentials;
     auth
       .createUserWithEmailAndPassword(email, passwordOne)
-      .then((authUser) => setCredentials(INITIAL_STATE))
+      .then((response) => {
+        return createUser({ uid: response.user.uid, email, username });
+      })
       .catch((error) => {
         setCredentials((prevState) => ({
           ...prevState,

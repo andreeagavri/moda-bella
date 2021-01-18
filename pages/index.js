@@ -6,6 +6,7 @@ import { Navigation } from "../components/Navigation";
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 import { NavMenu } from "../components/NavMenu";
+import { auth } from "../config/firebase";
 
 export default function Home() {
   return (
