@@ -32,7 +32,8 @@ export default function Haine() {
 
   useEffect(() => {
     if (haina) {
-      db.collection("products")
+      const unsubscribe = db
+        .collection("products")
         .where("type", "==", haina)
         .onSnapshot((snap) => {
           const dbProducts = snap.docs.map((doc) => ({
@@ -41,8 +42,11 @@ export default function Haine() {
           }));
           setProducts(dbProducts);
         });
+
+      return () => unsubscribe();
     }
-  });
+  }, [haina]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -58,7 +62,7 @@ export default function Haine() {
         <h1>{haina}</h1>
         <div className={styles.grid}>
           {products.map((prod) => (
-            <ProductGridItem product={prod} />
+            <ProductGridItem product={prod} key={prod.id} />
           ))}
         </div>
       </main>

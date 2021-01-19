@@ -25,6 +25,18 @@ export function Navigation(props) {
       getUserAdditionalData(user);
     }
   });
+
+  useEffect(() => {
+    const unsubscribeAfterAuth = auth.onAuthStateChanged((user) => {
+      if (user) {
+        getUserAdditionalData(user);
+      }
+    });
+
+    return () => {
+      unsubscribeAfterAuth();
+    };
+  }, []);
   return (
     <div className={styles.navbar}>
       {user === undefined ? (

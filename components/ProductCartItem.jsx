@@ -4,13 +4,21 @@ export function getPriceString(price) {
   return price.toString().replace(".", ",") + " RON";
 }
 export function ProductCartItem(props) {
-  const { cartItem } = props;
+  const { product } = props;
 
   return (
-    <div className={styles.card}>
-      <img className={styles.cardImage} src={product.photos[0]}></img>
-      <h1 className={styles.cardTitle}>{product.title}</h1>
-      <span className={styles.cardPrice}>{getPriceString(product.price)}</span>
+    <div className={styles.cartItem}>
+      <div className={styles.cartImageAndText}>
+        <img className={styles.cartItemImage} src={product.photos[0]}></img>
+        <div className={styles.cartItemText}>
+          <h1 className={styles.cartItemTitle}>{product.title}</h1>
+          <p>Mărime: {product.size}</p>
+          <p className={styles.cartItemPrice}>
+            {getPriceString(product.price)}
+          </p>
+        </div>
+      </div>
+      <div>X</div>
     </div>
   );
 }

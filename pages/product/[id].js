@@ -89,6 +89,7 @@ export default function Product() {
       }
     });
   }
+
   if (product) {
     return (
       <div className={styles.container}>

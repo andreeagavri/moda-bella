@@ -34,7 +34,8 @@ export default function BrandPage() {
 
   useEffect(() => {
     if (brandName) {
-      db.collection("products")
+      const unsubscribe = db
+        .collection("products")
         .where("brand", "==", brandName)
         .onSnapshot((snap) => {
           const dbProducts = snap.docs.map((doc) => ({
@@ -43,8 +44,11 @@ export default function BrandPage() {
           }));
           setProducts(dbProducts);
         });
+
+      return () => unsubscribe();
     }
-  });
+  }, [brandName]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -60,7 +64,7 @@ export default function BrandPage() {
         <h1>{brandName}</h1>
         <div className={styles.grid}>
           {products.map((prod) => (
-            <ProductGridItem product={prod} />
+            <ProductGridItem product={prod} key={prod.id} />
           ))}
         </div>
       </main>
