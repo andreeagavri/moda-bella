@@ -1,6 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, db } from "../../config/firebase";
 
 export function Navigation() {
@@ -16,11 +16,17 @@ export function Navigation() {
         }
       });
   }
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      getUserAdditionalData(user);
-    }
-  });
+  useEffect(() => {
+    const unsubscribeAfterAuth = auth.onAuthStateChanged((user) => {
+      if (user) {
+        getUserAdditionalData(user);
+      }
+    });
+    return () => {
+      unsubscribeAfterAuth();
+    };
+  }, []);
+
   return (
     <div className={styles.navbar}>
       {user === undefined ? (

@@ -53,7 +53,12 @@ function SignUpForm() {
     auth
       .createUserWithEmailAndPassword(email, passwordOne)
       .then((response) => {
-        return createUser({ uid: response.user.uid, email, username });
+        return createUser({
+          uid: response.user.uid,
+          email,
+          username,
+          points: 0,
+        });
       })
       .catch((error) => {
         setCredentials((prevState) => ({

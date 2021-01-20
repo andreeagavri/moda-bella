@@ -11,7 +11,8 @@ export default function ToateHainele() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     if (products.length === 0) {
-      db.collection("products")
+      const unsubscribe = db
+        .collection("products")
         .where("type", "in", [
           "sacouri",
           "pantaloni",
@@ -28,8 +29,9 @@ export default function ToateHainele() {
           }));
           setProducts(dbProducts);
         });
+      return () => unsubscribe();
     }
-  });
+  }, [products]);
   return (
     <div className={styles.container}>
       <Head>

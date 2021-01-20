@@ -148,7 +148,7 @@
   width: 100%;
   background-color: rgb(254, 239, 255);
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding: 10px;
 }
 .navlink {
@@ -278,4 +278,75 @@
 
 .dropdown:hover .dropdownContent {
   display: block;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 80%;
+  max-width: 900px;
+}
+
+.cartItem {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+
+.cartItem:last-child {
+  border-bottom: none;
+}
+
+.cartItemImageAndText {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  align-items: center;
+}
+
+.cartItemImage {
+  height: 90%;
+  margin: 10px 20px 10px 10px;
+}
+
+.cartItemTitle {
+  font-size: 15px;
+}
+
+.infoCartValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 80%;
+  max-width: 900px;
+}
+
+.infoLabelValue {
+  display: flex;
+  font-size: 14px;
+}
+
+.infoLabelValueTotal {
+  display: flex;
+  font-size: 17px;
+  margin-top: 15px;
+  font-weight: 700;
+}
+
+.infoLabel {
+  width: 150px;
+}
+
+.infoValue {
+  width: 150px;
+  text-align: right;
+}
+
+.removeProduct {
+  cursor: pointer;
 }
