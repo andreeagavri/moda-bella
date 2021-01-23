@@ -351,3 +351,116 @@
 .removeProduct {
   cursor: pointer;
 }
+
+.addressForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #999;
+  border-radius: 20px;
+}
+
+.addressFormLabelAndInput {
+  margin-bottom: 10px;
+}
+
+.addressFormLabel {
+  width: 150px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.addressFormInput {
+  height: 40px;
+  padding: 5px 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  border: 1px solid #999;
+}
+
+.addressFormInput:focus {
+  border: 1px solid #444;
+}
+
+.saveAddressButton {
+  color: white;
+  background-color: rgb(50, 50, 50);
+  align-self: center;
+  padding: 10px 40px;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  align-self: stretch;
+}
+
+.saveAddressButton:disabled {
+  color: rgb(70, 70, 70);
+  background-color: rgb(200, 200, 200);
+  user-select: none;
+  cursor: default;
+}
+
+.closeAddressFormButton {
+  background-color: rgb(254, 239, 255);
+  align-self: center;
+  padding: 10px 40px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #999;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  align-self: stretch;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.addresses {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 40px;
+}
+
+.addressItemSelected,
+.addressItemUnselected {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #999;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.addressItemSelected {
+  border: 2px solid #222;
+}
+
+.placeOrderButton {
+  color: white;
+  background-color: rgb(50, 50, 50);
+  align-self: center;
+  padding: 15px 50px;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.placeOrderButton:disabled {
+  color: rgb(70, 70, 70);
+  background-color: rgb(200, 200, 200);
+  user-select: none;
+  cursor: default;
+}

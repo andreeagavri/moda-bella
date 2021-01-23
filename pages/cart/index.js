@@ -7,12 +7,17 @@ import Link from "next/link";
 import { Navigation } from "../../components/Navigation";
 import { NavMenu } from "../../components/NavMenu";
 import { ProductCartItem } from "../../components/ProductCartItem";
+import { Address } from "../../components/Address";
+import { AddressForm } from "../../components/AddressForm";
 import { getDiscountValue } from "../../utils/index";
 import { getPriceString } from "../../utils/index";
 
 export default function Cart() {
   const [user, setUser] = useState();
   const [cartProducts, setCartProducts] = useState();
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddressId, setSelectedAddressId] = useState();
+  const [showAddressForm, setShowAddressForm] = useState(false);
   let totalWithDiscount = 0;
 
   async function getUserAdditionalData(user) {
@@ -39,11 +44,24 @@ export default function Cart() {
       });
   }
 
+  function getAddressData(user) {
+    return db
+      .collection("addresses")
+      .doc(user.uid)
+      .get()
+      .then((addressData) => {
+        if (addressData.data()) {
+          setAddresses(addressData.data().addresses);
+        }
+      });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         getUserAdditionalData(user);
         getCartData(user);
+        getAddressData(user);
       }
     });
 
@@ -121,9 +139,12 @@ export default function Cart() {
   }
 
   function placeOrder() {
+    const address = addresses.find((adr) => adr.id === selectedAddressId);
+
     db.collection("orders")
       .add({
         products: cartProducts,
+        address: address,
         status: "processing",
         total: totalWithDiscount.toFixed(2),
       })
@@ -137,6 +158,42 @@ export default function Cart() {
       });
   }
 
+  function toggleAddAddress() {
+    setShowAddressForm(true);
+  }
+
+  function saveAddress(address) {
+    if (addresses.length === 0) {
+      db.collection("addresses")
+        .doc(user.uid)
+        .set({
+          addresses: firebase.firestore.FieldValue.arrayUnion(address),
+        })
+        .then(() => {
+          setSelectedAddressId(address.id);
+          getAddressData(user);
+          console.log("added address in empty address list");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      db.collection("addresses")
+        .doc(user.uid)
+        .update({
+          addresses: firebase.firestore.FieldValue.arrayUnion(address),
+        })
+        .then(() => {
+          setSelectedAddressId(address.id);
+          getAddressData(user);
+          console.log("added a new address to existing list");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
   if (cartProducts !== undefined && user !== undefined) {
     let totalWithoutDiscount = 0;
 
@@ -146,6 +203,9 @@ export default function Cart() {
 
     let discount = getDiscountValue(user.points) * totalWithoutDiscount;
     totalWithDiscount = totalWithoutDiscount - discount;
+
+    let isOrderInvalid =
+      addresses.length <= 0 || selectedAddressId === undefined;
 
     return (
       <div className={styles.container}>
@@ -163,7 +223,7 @@ export default function Cart() {
             {cartProducts.map((product) => (
               <ProductCartItem
                 product={product}
-                key={product.id}
+                key={product.id + product.size}
                 updateQuantity={updateQuantity}
                 removeFromCart={removeFromCart}
               />
@@ -187,10 +247,36 @@ export default function Cart() {
               </div>
             </div>
           </div>
-          <div className={styles.addToCart} onClick={placeOrder}>
-            Plasează Comanda
+
+          <div className={styles.addresses}>
+            {addresses.map((address) => (
+              <Address
+                key={address.id}
+                address={address}
+                selected={selectedAddressId === address.id}
+                setSelectedAddressId={setSelectedAddressId}
+              />
+            ))}
           </div>
+          <div className={styles.addToCart} onClick={toggleAddAddress}>
+            Adaugă o Adresă
+          </div>
+          {showAddressForm ? (
+            <AddressForm
+              setShowAddressForm={setShowAddressForm}
+              saveAddress={saveAddress}
+            />
+          ) : null}
+
           <div>Points: {user.points}</div>
+
+          <button
+            disabled={isOrderInvalid}
+            className={styles.placeOrderButton}
+            onClick={placeOrder}
+          >
+            PLASEAZĂ COMANDA
+          </button>
         </main>
       </div>
     );
