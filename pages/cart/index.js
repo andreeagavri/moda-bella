@@ -13,6 +13,7 @@ import { getPriceString } from "../../utils/index";
 export default function Cart() {
   const [user, setUser] = useState();
   const [cartProducts, setCartProducts] = useState();
+  let totalWithDiscount = 0;
 
   async function getUserAdditionalData(user) {
     return db
@@ -90,6 +91,52 @@ export default function Cart() {
       });
   }
 
+  function addPointsToUser(total) {
+    db.collection("users")
+      .doc(user.uid)
+      .update({
+        points: user.points + Math.floor(total),
+      })
+      .then(() => {
+        console.log("updated user points");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function clearCart() {
+    db.collection("carts")
+      .doc(user.uid)
+      .update({
+        products: [],
+      })
+      .then(() => {
+        getCartData(user);
+        console.log("cleared the cart");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function placeOrder() {
+    db.collection("orders")
+      .add({
+        products: cartProducts,
+        status: "processing",
+        total: totalWithDiscount.toFixed(2),
+      })
+      .then(() => {
+        addPointsToUser(totalWithDiscount);
+        clearCart();
+        getUserAdditionalData(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   if (cartProducts !== undefined && user !== undefined) {
     let totalWithoutDiscount = 0;
 
@@ -98,7 +145,7 @@ export default function Cart() {
     }
 
     let discount = getDiscountValue(user.points) * totalWithoutDiscount;
-    let totalWithDiscount = totalWithoutDiscount - discount;
+    totalWithDiscount = totalWithoutDiscount - discount;
 
     return (
       <div className={styles.container}>
@@ -140,6 +187,10 @@ export default function Cart() {
               </div>
             </div>
           </div>
+          <div className={styles.addToCart} onClick={placeOrder}>
+            Plasează Comanda
+          </div>
+          <div>Points: {user.points}</div>
         </main>
       </div>
     );

@@ -186,6 +186,7 @@
   align-self: center;
   padding: 10px 40px;
   cursor: pointer;
+  user-select: none;
 }
 
 .addToCart:hover {
