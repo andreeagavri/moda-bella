@@ -34,7 +34,7 @@ export function Navigation() {
           <a className={styles.navlink}>Autentificare</a>
         </Link>
       ) : (
-        <span>Contul meu</span>
+        <Link href="/user">Contul meu</Link>
       )}
 
       <Link href="/cart">

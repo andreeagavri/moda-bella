@@ -59,7 +59,7 @@ export default function BrandPage() {
           <h1 className={styles.title}>MODA BELLA</h1>
         </Link>
         <NavMenu></NavMenu>
-        <h1>{brandName}</h1>
+        <h1 className={styles.pageTitle}>{brandName}</h1>
         <div className={styles.grid}>
           {products.map((prod) => (
             <ProductGridItem product={prod} />

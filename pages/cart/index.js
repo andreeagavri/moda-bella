@@ -16,7 +16,6 @@ export default function Cart() {
   const [user, setUser] = useState();
   const [cartProducts, setCartProducts] = useState();
   const [addresses, setAddresses] = useState([]);
-  const [selectedAddressId, setSelectedAddressId] = useState();
   const [showAddressForm, setShowAddressForm] = useState(false);
   let totalWithDiscount = 0;
 
@@ -139,12 +138,13 @@ export default function Cart() {
   }
 
   function placeOrder() {
-    const address = addresses.find((adr) => adr.id === selectedAddressId);
+    const address = addresses.find((adr) => adr.id === user.addressId);
 
     db.collection("orders")
       .add({
         products: cartProducts,
         address: address,
+        userId: user.uid,
         status: "processing",
         total: totalWithDiscount.toFixed(2),
       })
@@ -162,6 +162,18 @@ export default function Cart() {
     setShowAddressForm(true);
   }
 
+  function updateSelectedAddress(user, addressId) {
+    db.collection("users")
+      .doc(user.uid)
+      .set({
+        ...user,
+        addressId: addressId,
+      })
+      .then(() => {
+        getUserAdditionalData(user);
+      });
+  }
+
   function saveAddress(address) {
     if (addresses.length === 0) {
       db.collection("addresses")
@@ -170,7 +182,7 @@ export default function Cart() {
           addresses: firebase.firestore.FieldValue.arrayUnion(address),
         })
         .then(() => {
-          setSelectedAddressId(address.id);
+          updateSelectedAddress(user, address.id);
           getAddressData(user);
           console.log("added address in empty address list");
         })
@@ -184,7 +196,7 @@ export default function Cart() {
           addresses: firebase.firestore.FieldValue.arrayUnion(address),
         })
         .then(() => {
-          setSelectedAddressId(address.id);
+          updateSelectedAddress(user, address.id);
           getAddressData(user);
           console.log("added a new address to existing list");
         })
@@ -194,7 +206,39 @@ export default function Cart() {
     }
   }
 
-  if (cartProducts !== undefined && user !== undefined) {
+  function deleteAddress(address) {
+    console.log(address);
+    let newSelectedAddressId = user.addressId;
+    console.log(newSelectedAddressId, address.id);
+    if (newSelectedAddressId === address.id) {
+      newSelectedAddressId = "none";
+    }
+
+    const addressIdx = addresses.findIndex((adr) => adr.id === address.id);
+    addresses.splice(addressIdx, 1);
+
+    db.collection("addresses")
+      .doc(user.uid)
+      .update({
+        addresses: addresses,
+      })
+      .then(() => {
+        getAddressData(user);
+        updateSelectedAddress(user, newSelectedAddressId);
+        getUserAdditionalData(user);
+        console.log(user.addressId);
+        console.log("deleted the address");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  if (
+    cartProducts !== undefined &&
+    user !== undefined &&
+    cartProducts.length > 0
+  ) {
     let totalWithoutDiscount = 0;
 
     for (const product of cartProducts) {
@@ -204,8 +248,7 @@ export default function Cart() {
     let discount = getDiscountValue(user.points) * totalWithoutDiscount;
     totalWithDiscount = totalWithoutDiscount - discount;
 
-    let isOrderInvalid =
-      addresses.length <= 0 || selectedAddressId === undefined;
+    let isOrderInvalid = addresses.length <= 0 || user.addressId === "none";
 
     return (
       <div className={styles.container}>
@@ -219,6 +262,7 @@ export default function Cart() {
             <h1 className={styles.title}>MODA BELLA</h1>
           </Link>
           <NavMenu />
+          <h1 className={styles.pageTitle}>Coş de cumpărături</h1>
           <div className={styles.cart}>
             {cartProducts.map((product) => (
               <ProductCartItem
@@ -248,13 +292,16 @@ export default function Cart() {
             </div>
           </div>
 
+          <h2>Adresele mele</h2>
           <div className={styles.addresses}>
             {addresses.map((address) => (
               <Address
                 key={address.id}
                 address={address}
-                selected={selectedAddressId === address.id}
-                setSelectedAddressId={setSelectedAddressId}
+                selected={user.addressId === address.id}
+                user={user}
+                updateSelectedAddress={updateSelectedAddress}
+                deleteAddress={deleteAddress}
               />
             ))}
           </div>
@@ -280,5 +327,22 @@ export default function Cart() {
         </main>
       </div>
     );
-  } else return null;
+  } else
+    return (
+      <div className={styles.container}>
+        <Head>
+          <title>Moda Bella</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Navigation />
+        <main className={styles.main}>
+          <Link href="/">
+            <h1 className={styles.title}>MODA BELLA</h1>
+          </Link>
+          <NavMenu />
+          <h1 className={styles.pageTitle}>Coş de cumpărături</h1>
+          <h2>Coşul este gol.</h2>
+        </main>
+      </div>
+    );
 }

@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 };
 
 export function AddressForm(props) {
-  const { setShowAddressForm, saveAddress } = props;
+  const { setShowAddressForm, user, saveAddress } = props;
   const [addressItems, setAddressItems] = useState(INITIAL_STATE);
 
   const { details, city, county, postCode, phone } = addressItems;
