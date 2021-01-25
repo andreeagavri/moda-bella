@@ -436,6 +436,7 @@
   display: flex;
   flex-direction: column;
   width: 300px;
+  margin-top: 20px;
 }
 
 .addressItemSelected,
@@ -489,4 +490,92 @@
 .deleteAddressButton {
   cursor: pointer;
   user-select: none;
+}
+
+.orderSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 900px;
+  align-self: center;
+  /* border: solid 1px #999; */
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #e5e5e5;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.orderDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderDetailsButton {
+  background-color: rgb(60, 60, 60);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.orderId {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.orderDetailAndAddress {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.orderDetailItem {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #999;
+  border-radius: 20px;
+  padding: 20px;
+  user-select: none;
+}
+
+.userDetail {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.userButton {
+  color: white;
+  background-color: rgb(50, 50, 50);
+  align-self: center;
+  width: 200px;
+  margin: 0 10px;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.userButtons {
+  display: flex;
+}
+
+.userDetailsAndButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 900px;
 }
