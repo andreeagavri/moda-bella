@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -224,8 +225,9 @@
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  width: 600px;
   border: solid 1px #333;
-  border-radius: 20px 20px 0 0;
+  /* border-radius: 20px 20px 0 0; */
   z-index: 3;
 }
 
@@ -235,7 +237,7 @@
   font-weight: 500;
   color: #333;
   text-align: center;
-  padding: 14px 16px;
+  padding: 7px 16px;
   text-decoration: none;
 }
 
@@ -251,7 +253,7 @@
   outline: none;
   color: #333;
   font-weight: 500;
-  padding: 14px 16px;
+  padding: 7px 16px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
@@ -271,7 +273,7 @@
   /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
   border: solid 1px #333;
   margin-left: -1px;
-  border-radius: 0 0 20px 20px;
+  /* border-radius: 0 0 20px 20px; */
   border-top: none;
 }
 
@@ -282,10 +284,6 @@
   text-decoration: none;
   display: block;
   text-align: left;
-}
-
-.dropdownContent a:hover {
-  /* background-color: #ddd; */
 }
 
 .dropdown:hover .dropdownContent {

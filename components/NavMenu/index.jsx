@@ -46,7 +46,6 @@ export function NavMenu() {
       </div>
 
       <Link href={"/bella-card"}>Bella Card</Link>
-      <div className={styles.dropdownBackground}></div>
     </div>
   );
 }

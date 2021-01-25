@@ -207,9 +207,7 @@ export default function Cart() {
   }
 
   function deleteAddress(address) {
-    console.log(address);
     let newSelectedAddressId = user.addressId;
-    console.log(newSelectedAddressId, address.id);
     if (newSelectedAddressId === address.id) {
       newSelectedAddressId = "none";
     }
@@ -226,7 +224,6 @@ export default function Cart() {
         getAddressData(user);
         updateSelectedAddress(user, newSelectedAddressId);
         getUserAdditionalData(user);
-        console.log(user.addressId);
         console.log("deleted the address");
       })
       .catch((error) => {

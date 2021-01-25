@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 };
 
 export function AddressForm(props) {
-  const { setShowAddressForm, user, saveAddress } = props;
+  const { setShowAddressForm, saveAddress } = props;
   const [addressItems, setAddressItems] = useState(INITIAL_STATE);
 
   const { details, city, county, postCode, phone } = addressItems;
@@ -39,10 +39,6 @@ export function AddressForm(props) {
   function isPhoneInvalid(phone) {
     // remove spaces
     phone = phone.replace(/\s+/g, "");
-
-    if (phone.length < 10) {
-      return true;
-    }
 
     if (phone.match(/^[0-9]{10}$/) !== null) {
       return false;
