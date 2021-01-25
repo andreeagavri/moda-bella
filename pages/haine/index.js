@@ -45,6 +45,8 @@ export default function ToateHainele() {
         </Link>
         <NavMenu></NavMenu>
 
+        <h1 className={styles.pageTitle}>Toate Hainele</h1>
+
         <div className={styles.grid}>
           {products.map((prod) => (
             <ProductGridItem product={prod} />

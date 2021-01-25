@@ -8,6 +8,7 @@ import { db } from "../../config/firebase";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { NavMenu } from "../../components/NavMenu";
+import { capitalize } from "../../utils";
 
 export default function Haine() {
   const [products, setProducts] = useState([]);
@@ -57,7 +58,7 @@ export default function Haine() {
           <h1 className={styles.title}>MODA BELLA</h1>
         </Link>
         <NavMenu></NavMenu>
-        <h1>{haina}</h1>
+        <h1 className={styles.pageTitle}>{capitalize(haina)}</h1>
         <div className={styles.grid}>
           {products.map((prod) => (
             <ProductGridItem product={prod} />

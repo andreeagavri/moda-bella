@@ -50,6 +50,7 @@
 
 .title {
   margin: 0;
+  margin-bottom: 30px;
   line-height: 1.15;
   font-size: 4rem;
   font-weight: 100;
@@ -221,13 +222,18 @@
 
 .navMenu {
   overflow: hidden;
-  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px #333;
+  border-radius: 20px 20px 0 0;
+  z-index: 3;
 }
 
 .navMenu a {
   float: left;
-  font-size: 16px;
-  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -236,13 +242,15 @@
 .dropdown {
   float: left;
   overflow: hidden;
+  z-index: 3;
 }
 
 .dropdown .dropbtn {
-  font-size: 16px;
+  font-size: 18px;
   border: none;
   outline: none;
-  color: white;
+  color: #333;
+  font-weight: 500;
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
@@ -252,16 +260,19 @@
 
 .navMenu a:hover,
 .dropdown:hover .dropbtn {
-  background-color: red;
+  text-decoration: underline;
 }
 
 .dropdownContent {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #fff;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+  border: solid 1px #333;
+  margin-left: -1px;
+  border-radius: 0 0 20px 20px;
+  border-top: none;
 }
 
 .dropdownContent a {
@@ -274,7 +285,7 @@
 }
 
 .dropdownContent a:hover {
-  background-color: #ddd;
+  /* background-color: #ddd; */
 }
 
 .dropdown:hover .dropdownContent {
@@ -284,7 +295,7 @@
 .cart {
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 80%;
   max-width: 900px;
 }
@@ -296,7 +307,7 @@
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px dashed gray;
 }
 
 .cartItem:last-child {
@@ -325,6 +336,9 @@
   align-items: flex-end;
   width: 80%;
   max-width: 900px;
+
+  padding-bottom: 30px;
+  border-bottom: solid 1px #999;
 }
 
 .infoLabelValue {
@@ -350,4 +364,131 @@
 
 .removeProduct {
   cursor: pointer;
+}
+
+.addressForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #999;
+  border-radius: 20px;
+}
+
+.addressFormLabelAndInput {
+  margin-bottom: 10px;
+}
+
+.addressFormLabel {
+  width: 150px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.addressFormInput {
+  height: 40px;
+  padding: 5px 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  border: 1px solid #999;
+}
+
+.addressFormInput:focus {
+  border: 1px solid #444;
+}
+
+.saveAddressButton {
+  color: white;
+  background-color: rgb(50, 50, 50);
+  align-self: center;
+  padding: 10px 40px;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  align-self: stretch;
+}
+
+.saveAddressButton:disabled {
+  color: rgb(70, 70, 70);
+  background-color: rgb(200, 200, 200);
+  user-select: none;
+  cursor: default;
+}
+
+.closeAddressFormButton {
+  background-color: rgb(254, 239, 255);
+  align-self: center;
+  padding: 10px 40px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #999;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  align-self: stretch;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.addresses {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.addressItemSelected,
+.addressItemUnselected {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #999;
+  border-radius: 20px;
+  padding: 20px;
+  user-select: none;
+}
+
+.addressItemSelected {
+  border: 2px solid #222;
+}
+
+.placeOrderButton {
+  color: white;
+  background-color: rgb(50, 50, 50);
+  align-self: center;
+  padding: 15px 50px;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.placeOrderButton:disabled {
+  color: rgb(70, 70, 70);
+  background-color: rgb(200, 200, 200);
+  user-select: none;
+  cursor: default;
+}
+
+.pageTitle {
+  margin-bottom: 0;
+}
+
+.addressItemAndDelete {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.deleteAddressButton {
+  cursor: pointer;
+  user-select: none;
 }
