@@ -18,6 +18,7 @@ export default function Cart() {
   const [addresses, setAddresses] = useState([]);
   const [showAddressForm, setShowAddressForm] = useState(false);
   let totalWithDiscount = 0;
+  let discount = 0;
 
   async function getUserAdditionalData(user) {
     return db
@@ -145,8 +146,10 @@ export default function Cart() {
         products: cartProducts,
         address: address,
         userId: user.uid,
-        status: "processing",
-        total: totalWithDiscount.toFixed(2),
+        date: new Date().toISOString().slice(0, 16).replace("T", " "),
+        status: "În curs de procesare",
+        discount: getPriceString(discount),
+        total: getPriceString(totalWithDiscount),
       })
       .then(() => {
         addPointsToUser(totalWithDiscount);
@@ -159,7 +162,7 @@ export default function Cart() {
   }
 
   function toggleAddAddress() {
-    setShowAddressForm(true);
+    setShowAddressForm(!showAddressForm);
   }
 
   function updateSelectedAddress(user, addressId) {
@@ -242,7 +245,7 @@ export default function Cart() {
       totalWithoutDiscount += product.price * product.quantity;
     }
 
-    let discount = getDiscountValue(user.points) * totalWithoutDiscount;
+    discount = getDiscountValue(user.points) * totalWithoutDiscount;
     totalWithDiscount = totalWithoutDiscount - discount;
 
     let isOrderInvalid = addresses.length <= 0 || user.addressId === "none";

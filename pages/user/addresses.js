@@ -5,15 +5,21 @@ import { useEffect, useState } from "react";
 import { db, auth } from "../../config/firebase";
 import { NavMenu } from "../../components/NavMenu";
 import { Address } from "../../components/Address";
+import { AddressForm } from "../../components/AddressForm";
+import firebase from "firebase/app";
 import { OrderSummary } from "../../components/OrderSummary";
 import Link from "next/link";
 
-export default function User() {
+export default function Addresses() {
   const [user, setUser] = useState();
   const [addresses, setAddresses] = useState([]);
   const [orders, setOrders] = useState([]);
   const [selectedAddressId, setSelectedAddressId] = useState();
   const [showAddressForm, setShowAddressForm] = useState(false);
+
+  function toggleAddAddress() {
+    setShowAddressForm(!showAddressForm);
+  }
 
   function getUserAdditionalData(user) {
     return db
@@ -36,20 +42,6 @@ export default function User() {
         if (addressData.data()) {
           setAddresses(addressData.data().addresses);
         }
-      });
-  }
-
-  function getOrdersData(user) {
-    return db
-      .collection("orders")
-      .where("userId", "==", user.uid)
-      .onSnapshot((snap) => {
-        const dbProducts = snap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        dbProducts.sort((prod1, prod2) => prod1.date <= prod2.date);
-        setOrders(dbProducts);
       });
   }
 
@@ -91,12 +83,43 @@ export default function User() {
       });
   }
 
+  function saveAddress(address) {
+    if (addresses.length === 0) {
+      db.collection("addresses")
+        .doc(user.uid)
+        .set({
+          addresses: firebase.firestore.FieldValue.arrayUnion(address),
+        })
+        .then(() => {
+          updateSelectedAddress(user, address.id);
+          getAddressData(user);
+          console.log("added address in empty address list");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      db.collection("addresses")
+        .doc(user.uid)
+        .update({
+          addresses: firebase.firestore.FieldValue.arrayUnion(address),
+        })
+        .then(() => {
+          updateSelectedAddress(user, address.id);
+          getAddressData(user);
+          console.log("added a new address to existing list");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         getUserAdditionalData(user);
         getAddressData(user);
-        getOrdersData(user);
       }
     });
 
@@ -115,28 +138,32 @@ export default function User() {
           <h1 className={styles.title}>MODA BELLA</h1>
           <NavMenu></NavMenu>
 
-          <h1 className={styles.pageTitle}>Contul meu</h1>
-          <div className={styles.userDetailsAndButtons}>
-            <div>
-              <div className={styles.userDetail}>
-                <span>Nume:</span>
-                <span>{user.username}</span>
-              </div>
-              <div className={styles.userDetail}>
-                <span>E-mail:</span>
-                <span>{user.email}</span>
-              </div>
-            </div>
+          <h1 className={styles.pageTitle}>Adresele mele</h1>
 
-            <div className={styles.userButtons}>
-              <Link href="/user/addresses">
-                <div className={styles.userButton}>Adresele mele</div>
-              </Link>
-              <Link href="/user/orders">
-                <div className={styles.userButton}>Comenzile mele</div>
-              </Link>
-            </div>
+          {addresses.length === 0 ? (
+            <h3>Nu ai nicio adresă ascoiată cu contul tău.</h3>
+          ) : null}
+          <div className={styles.addresses}>
+            {addresses.map((address) => (
+              <Address
+                key={address.id}
+                address={address}
+                selected={user.addressId === address.id}
+                user={user}
+                updateSelectedAddress={updateSelectedAddress}
+                deleteAddress={deleteAddress}
+              />
+            ))}
           </div>
+          <div className={styles.addToCart} onClick={toggleAddAddress}>
+            Adaugă o Adresă
+          </div>
+          {showAddressForm ? (
+            <AddressForm
+              setShowAddressForm={setShowAddressForm}
+              saveAddress={saveAddress}
+            />
+          ) : null}
         </main>
       </div>
     );
