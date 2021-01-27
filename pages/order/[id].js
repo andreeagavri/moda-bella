@@ -69,6 +69,7 @@ export default function Order() {
           <div className={styles.orderDetailAndAddress}>
             <div className={styles.orderDetailItem}>
               <div>Plasată pe {order.date}</div>
+              <div>Status: {order.status}</div>
               <div>Discount Bella Card: {order.discount}</div>
               <div>Total: {order.total}</div>
             </div>

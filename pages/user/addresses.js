@@ -156,7 +156,7 @@ export default function Addresses() {
             ))}
           </div>
           <div className={styles.addToCart} onClick={toggleAddAddress}>
-            Adaugă o Adresă
+            ADAUGĂ O ADRESĂ
           </div>
           {showAddressForm ? (
             <AddressForm

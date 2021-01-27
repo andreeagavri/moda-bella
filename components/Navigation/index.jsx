@@ -36,10 +36,11 @@ export function Navigation() {
       ) : (
         <Link href="/user">Contul meu</Link>
       )}
-
-      <Link href="/cart">
-        <a className={styles.navlink}>Coş de cumpărături</a>
-      </Link>
+      {user === undefined ? null : (
+        <Link href="/cart">
+          <a className={styles.navlink}>Coş de cumpărături</a>
+        </Link>
+      )}
       {user === undefined ? null : (
         <Link href="/signout">
           <a className={styles.navlink}>Deconectare</a>

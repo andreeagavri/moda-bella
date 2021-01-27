@@ -195,9 +195,20 @@ export default function Product() {
               >
                 Selectaţi o mărime înainte de a adăuga în coş.
               </p>
-              <div onClick={handleAddToCart} className={styles.addToCart}>
-                Adaugă în Coş
-              </div>
+              {userId === undefined ? (
+                <div className={styles.productNonSignedInMessage}>
+                  <span>
+                    Pentru a adauga produsul în coş, autentificaţi-vă aici:
+                  </span>
+                  <Link href="/signin">
+                    <span className={styles.signinLink}>Autentificare</span>
+                  </Link>
+                </div>
+              ) : (
+                <div onClick={handleAddToCart} className={styles.addToCart}>
+                  ADAUGĂ ÎN COŞ
+                </div>
+              )}
             </div>
           </div>
         </main>

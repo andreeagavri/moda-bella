@@ -13,7 +13,7 @@ export function NavMenu() {
           <Link href={"/haine/bluze-si-tricouri"}>Bluze și Tricouri</Link>
           <Link href={"/haine/rochii"}>Rochii</Link>
           <Link href={"/haine/fuste"}>Fuste</Link>
-          <Link href={"/haine/paltoane-si-geci"}>Paltoane și Geci</Link>
+          <Link href={"/haine/geci-si-paltoane"}>Geci și Paltoane</Link>
           <Link href={"/haine/imbracaminte-sport"}>Îmbrăcăminte Sport</Link>
           <Link href={"/haine/sacouri"}>Sacouri</Link>
         </div>

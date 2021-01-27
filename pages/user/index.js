@@ -130,10 +130,10 @@ export default function User() {
 
             <div className={styles.userButtons}>
               <Link href="/user/addresses">
-                <div className={styles.userButton}>Adresele mele</div>
+                <div className={styles.userButton}>ADRESELE MELE</div>
               </Link>
               <Link href="/user/orders">
-                <div className={styles.userButton}>Comenzile mele</div>
+                <div className={styles.userButton}>COMENZILE MELE</div>
               </Link>
             </div>
           </div>

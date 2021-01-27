@@ -8,8 +8,31 @@ import { db } from "../../config/firebase";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { NavMenu } from "../../components/NavMenu";
+import { FilterGroup } from "../../components/FilterGroup";
 export default function BrandPage() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filterColors, setFilterColors] = useState([]);
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [showColorSwatches, setShowColorSwatches] = useState(false);
+  const [showPriceRange, setShowPriceRange] = useState(false);
+
+  function applyFilters() {
+    let filteredProducts = products.filter((prod) => {
+      if (filterColors.length === 0) {
+        return true;
+      }
+      if (filterColors.includes(prod.color)) {
+        return true;
+      }
+      return false;
+    });
+
+    filteredProducts = filteredProducts.filter(
+      (prod) => prod.price >= priceRange[0] && prod.price <= priceRange[1]
+    );
+    setFilteredProducts(filteredProducts);
+  }
 
   const slugToBrand = {
     levis: "Levi's",
@@ -43,6 +66,7 @@ export default function BrandPage() {
             ...doc.data(),
           }));
           setProducts(dbProducts);
+          setFilteredProducts(dbProducts);
         });
       return () => unsubscribe();
     }
@@ -60,9 +84,27 @@ export default function BrandPage() {
         </Link>
         <NavMenu></NavMenu>
         <h1 className={styles.pageTitle}>{brandName}</h1>
+
+        <FilterGroup
+          showColorSwatches={showColorSwatches}
+          setShowColorSwatches={setShowColorSwatches}
+          filterColors={filterColors}
+          setFilterColors={setFilterColors}
+          showPriceRange={showPriceRange}
+          setShowPriceRange={setShowPriceRange}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+        />
+        <div
+          className={styles.applyFiltersButton}
+          onClick={() => applyFilters()}
+        >
+          Aplicați filtrele
+        </div>
+
         <div className={styles.grid}>
-          {products.map((prod) => (
-            <ProductGridItem product={prod} />
+          {filteredProducts.map((prod) => (
+            <ProductGridItem product={prod} key={prod.id} />
           ))}
         </div>
       </main>

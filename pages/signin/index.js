@@ -2,6 +2,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { auth, db } from "../../config/firebase";
 import { useRouter } from "next/router";
+import styles from "../../styles/Home.module.css";
+import Head from "next/head";
+import { Navigation } from "../../components/Navigation";
+import { NavMenu } from "../../components/NavMenu";
 
 const INITIAL_STATE = {
   email: "",
@@ -34,31 +38,53 @@ export default function SignIn() {
   const isInvalid = password === "" || email === "";
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+    <div className={styles.container}>
+      <Head>
+        <title>Moda Bella</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Navigation />
+      <main className={styles.main}>
+        <h1 className={styles.title}>MODA BELLA</h1>
+        <NavMenu></NavMenu>
+        <form className={styles.signinForm} onSubmit={onSubmit}>
+          <div className={styles.signinItem}>
+            <span className={styles.signinLabel}>E-mail</span>
+            <input
+              name="email"
+              value={email}
+              onChange={onChange}
+              type="text"
+              className={styles.signinInput}
+            />
+          </div>
+          <div className={styles.signinItem}>
+            <span className={styles.signinLabel}>Parolă</span>
+            <input
+              name="password"
+              value={password}
+              onChange={onChange}
+              type="password"
+              className={styles.signinInput}
+            />
+          </div>
 
-        {error && <p>{error.message}</p>}
-      </form>
-      <Link href="/signup">
-        <a>Înregistrare</a>
-      </Link>
+          <div className={styles.registerAndSignIn}>
+            <Link href="/signup">
+              <span className={styles.signinLink}>Înregistrare</span>
+            </Link>
+            <button
+              disabled={isInvalid}
+              type="submit"
+              className={styles.saveAddressButton}
+            >
+              Autentificare
+            </button>
+          </div>
+
+          {error && <p>{error.message}</p>}
+        </form>
+      </main>
     </div>
   );
 }

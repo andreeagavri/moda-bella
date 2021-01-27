@@ -306,7 +306,7 @@ export default function Cart() {
             ))}
           </div>
           <div className={styles.addToCart} onClick={toggleAddAddress}>
-            Adaugă o Adresă
+            ADAUGĂ O ADRESĂ
           </div>
           {showAddressForm ? (
             <AddressForm
@@ -327,7 +327,7 @@ export default function Cart() {
         </main>
       </div>
     );
-  } else
+  } else if (cartProducts !== undefined && cartProducts.length === 0)
     return (
       <div className={styles.container}>
         <Head>
@@ -345,4 +345,7 @@ export default function Cart() {
         </main>
       </div>
     );
+  else {
+    return null;
+  }
 }

@@ -17,5 +17,7 @@ export function getDiscountValue(points) {
 }
 
 export function capitalize(str) {
-  return str[0].toUpperCase() + str.slice(1);
+  if (str !== undefined) return str[0].toUpperCase() + str.slice(1);
+
+  return "";
 }

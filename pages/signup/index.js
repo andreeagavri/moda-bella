@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import Link from "next/link";
 import { Navigation } from "../../components/Navigation";
+import { NavMenu } from "../../components/NavMenu";
 import React, { useState } from "react";
 import { auth } from "../../config/firebase";
 import { db } from "../../config/firebase";
@@ -19,6 +20,7 @@ export default function SignUp() {
         <Link href="/">
           <h1 className={styles.title}>MODA BELLA</h1>
         </Link>
+        <NavMenu></NavMenu>
         <SignUpForm />
       </main>
     </div>
@@ -84,40 +86,62 @@ function SignUpForm() {
     username === "";
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        name="username"
-        value={username}
-        onChange={onChange}
-        type="text"
-        placeholder="Username"
-      />
-      <input
-        name="email"
-        value={email}
-        onChange={onChange}
-        type="text"
-        placeholder="Email Address"
-      />
-      <input
-        name="passwordOne"
-        value={passwordOne}
-        onChange={onChange}
-        type="password"
-        placeholder="Password"
-      />
-      <input
-        name="passwordTwo"
-        value={passwordTwo}
-        onChange={onChange}
-        type="password"
-        placeholder="Confirm Password"
-      />
-      <button disabled={isInvalid} type="submit">
-        Sign Up
-      </button>
+    <form onSubmit={onSubmit} className={styles.signinForm}>
+      <div className={styles.signinItem}>
+        <span className={styles.signinLabel}>Nume</span>{" "}
+        <input
+          name="username"
+          value={username}
+          onChange={onChange}
+          type="text"
+          className={styles.signinInput}
+        />
+      </div>
 
+      <div className={styles.signinItem}>
+        <span className={styles.signinLabel}>E-mail</span>
+        <input
+          name="email"
+          value={email}
+          onChange={onChange}
+          type="text"
+          className={styles.signinInput}
+        />
+      </div>
+
+      <div className={styles.signinItem}>
+        <span className={styles.signinLabel}>Parolă</span>
+        <input
+          name="passwordOne"
+          value={passwordOne}
+          onChange={onChange}
+          type="password"
+          className={styles.signinInput}
+        />
+      </div>
+
+      <div className={styles.signinItem}>
+        <span className={styles.signinLabel}>Confirmare Parolă</span>
+        <input
+          name="passwordTwo"
+          value={passwordTwo}
+          onChange={onChange}
+          type="password"
+          className={styles.signinInput}
+        />
+      </div>
+
+      <button
+        disabled={isInvalid}
+        className={styles.saveAddressButton}
+        type="submit"
+      >
+        Înregistrare
+      </button>
       {error && <p>{error.message}</p>}
+      <Link href="/signin">
+        <span className={styles.signupLink}>Înapoi la autentificare</span>
+      </Link>
     </form>
   );
 }

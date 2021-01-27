@@ -189,6 +189,8 @@
   padding: 10px 40px;
   cursor: pointer;
   user-select: none;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .addToCart:hover {
@@ -477,7 +479,7 @@
 }
 
 .pageTitle {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .addressItemAndDelete {
@@ -549,7 +551,7 @@
 
 .userDetail {
   display: flex;
-  width: 200px;
+  width: 300px;
   justify-content: space-between;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -567,6 +569,8 @@
   margin-bottom: 10px;
   cursor: pointer;
   user-select: none;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .userButtons {
@@ -578,4 +582,136 @@
   justify-content: space-between;
   width: 80%;
   max-width: 900px;
+}
+
+.colorSwatches {
+  display: flex;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f5f5f5;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.colorSwatch {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.colorSwatch:hover {
+  opacity: 0.85;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 600px;
+}
+
+.filterName {
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 10px;
+}
+.applyFiltersButton {
+  margin-top: 20px;
+  padding: 7px 14px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.priceRangeContainer {
+  display: flex;
+  border: 1px solid #333;
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  background: #f5f5f5;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.priceRangeInput {
+  width: 80px;
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #333;
+  font-family: "Montserrat", sans-serif;
+  padding: 5px;
+}
+
+.priceRangeLine {
+  height: 1px;
+  flex-grow: 1;
+  max-width: 100px;
+  background-color: #999;
+  align-self: center;
+}
+
+.signinItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.signinForm {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 80px;
+  background: #f5f5f5;
+  align-items: center;
+}
+
+.signinLabel {
+  font-size: 14px;
+}
+
+.signinInput {
+  width: 300px;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+}
+
+.registerAndSignIn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.signinLink,
+.signupLink {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.signupLink {
+  margin-top: 20px;
+}
+
+.productNonSignedInMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
