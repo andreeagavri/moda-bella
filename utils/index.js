@@ -7,10 +7,10 @@ export function getDiscountValue(points) {
   if (points < 1000) {
     return 0;
   }
-  if (points < 2000) {
+  if (points < 3000) {
     return 0.1;
   }
-  if (points < 5000) {
+  if (points < 8000) {
     return 0.2;
   }
   return 0.3;

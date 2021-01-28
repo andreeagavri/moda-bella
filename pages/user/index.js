@@ -7,6 +7,7 @@ import { NavMenu } from "../../components/NavMenu";
 import { Address } from "../../components/Address";
 import { OrderSummary } from "../../components/OrderSummary";
 import Link from "next/link";
+import { Card } from "../../components/Card";
 
 export default function User() {
   const [user, setUser] = useState();
@@ -116,6 +117,8 @@ export default function User() {
           <NavMenu></NavMenu>
 
           <h1 className={styles.pageTitle}>Contul meu</h1>
+
+          <Card points={user.points} />
           <div className={styles.userDetailsAndButtons}>
             <div>
               <div className={styles.userDetail}>
@@ -125,6 +128,10 @@ export default function User() {
               <div className={styles.userDetail}>
                 <span>E-mail:</span>
                 <span>{user.email}</span>
+              </div>
+              <div className={styles.userDetail}>
+                <span>Puncte:</span>
+                <span>{user.points}</span>
               </div>
             </div>
 

@@ -315,8 +315,6 @@ export default function Cart() {
             />
           ) : null}
 
-          <div>Points: {user.points}</div>
-
           <button
             disabled={isOrderInvalid}
             className={styles.placeOrderButton}

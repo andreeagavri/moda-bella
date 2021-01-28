@@ -715,3 +715,41 @@
   align-items: center;
   text-align: center;
 }
+
+.bellaCardImage {
+  width: 50%;
+  max-width: 600px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.bellaCardsInfoImage {
+  width: 80%;
+  max-width: 900px;
+}
+
+.smallTitle {
+  font-weight: 500;
+  font-size: 26px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cardParagraph {
+  margin-top: 10px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.twoTextContainer {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  justify-content: space-between;
+}
+
+.singleTextcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
