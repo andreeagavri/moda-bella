@@ -1,0 +1,27 @@
+import { CartPreviewitem } from "./CartPreviewItem";
+import styles from "../styles/Home.module.css";
+import Link from "next/link";
+
+export function CartPreview(props) {
+  const { products, setShowCartPreview } = props;
+
+  function closePreview() {
+    setShowCartPreview(false);
+  }
+
+  return (
+    <div className={styles.cartPreview}>
+      <div className={styles.closeCartPreview} onClick={() => closePreview()}>
+        ⨉
+      </div>
+      <div className={styles.cartPreviewProducts}>
+        {products.map((product) => (
+          <CartPreviewitem product={product} />
+        ))}
+      </div>
+      <Link href="/cart">
+        <div className={styles.cartPreviewDetails}>DETALII COŞ</div>
+      </Link>
+    </div>
+  );
+}

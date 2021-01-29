@@ -9,6 +9,7 @@ import { AddressForm } from "../../components/AddressForm";
 import firebase from "firebase/app";
 import { OrderSummary } from "../../components/OrderSummary";
 import Link from "next/link";
+import { Title } from "../../components/Title";
 
 export default function Addresses() {
   const [user, setUser] = useState();
@@ -135,7 +136,7 @@ export default function Addresses() {
         </Head>
         <Navigation />
         <main className={styles.main}>
-          <h1 className={styles.title}>MODA BELLA</h1>
+          <Title />
           <NavMenu></NavMenu>
 
           <h1 className={styles.pageTitle}>Adresele mele</h1>
@@ -155,7 +156,7 @@ export default function Addresses() {
               />
             ))}
           </div>
-          <div className={styles.addToCart} onClick={toggleAddAddress}>
+          <div className={styles.addAddressButton} onClick={toggleAddAddress}>
             ADAUGĂ O ADRESĂ
           </div>
           {showAddressForm ? (

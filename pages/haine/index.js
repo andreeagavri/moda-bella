@@ -7,6 +7,7 @@ import { db } from "../../config/firebase";
 import Link from "next/link";
 import { NavMenu } from "../../components/NavMenu";
 import { FilterGroup } from "../../components/FilterGroup";
+import { Title } from "../../components/Title";
 
 export default function ToateHainele() {
   const [products, setProducts] = useState([]);
@@ -66,9 +67,7 @@ export default function ToateHainele() {
       </Head>
       <Navigation />
       <main className={styles.main}>
-        <Link href="/">
-          <h1 className={styles.title}>MODA BELLA</h1>
-        </Link>
+        <Title />
         <NavMenu></NavMenu>
 
         <h1 className={styles.pageTitle}>Toate Hainele</h1>
@@ -87,7 +86,7 @@ export default function ToateHainele() {
           className={styles.applyFiltersButton}
           onClick={() => applyFilters()}
         >
-          Aplicați filtrele
+          APLICAŢI FILTRELE
         </div>
 
         <div className={styles.grid}>

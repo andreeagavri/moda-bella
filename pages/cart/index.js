@@ -11,6 +11,7 @@ import { Address } from "../../components/Address";
 import { AddressForm } from "../../components/AddressForm";
 import { getDiscountValue } from "../../utils/index";
 import { getPriceString } from "../../utils/index";
+import { Title } from "../../components/Title";
 
 export default function Cart() {
   const [user, setUser] = useState();
@@ -258,9 +259,7 @@ export default function Cart() {
         </Head>
         <Navigation />
         <main className={styles.main}>
-          <Link href="/">
-            <h1 className={styles.title}>MODA BELLA</h1>
-          </Link>
+          <Title />
           <NavMenu />
           <h1 className={styles.pageTitle}>Coş de cumpărături</h1>
           <div className={styles.cart}>
@@ -305,7 +304,7 @@ export default function Cart() {
               />
             ))}
           </div>
-          <div className={styles.addToCart} onClick={toggleAddAddress}>
+          <div className={styles.addAddressButton} onClick={toggleAddAddress}>
             ADAUGĂ O ADRESĂ
           </div>
           {showAddressForm ? (

@@ -6,6 +6,7 @@ import { db, auth } from "../../config/firebase";
 import { NavMenu } from "../../components/NavMenu";
 import { Address } from "../../components/Address";
 import { OrderSummary } from "../../components/OrderSummary";
+import { Title } from "../../components/Title";
 
 export default function Orders() {
   const [user, setUser] = useState();
@@ -57,7 +58,7 @@ export default function Orders() {
         </Head>
         <Navigation />
         <main className={styles.main}>
-          <h1 className={styles.title}>MODA BELLA</h1>
+          <Title />
           <NavMenu></NavMenu>
 
           <h1 className={styles.pageTitle}>Comenzile mele</h1>

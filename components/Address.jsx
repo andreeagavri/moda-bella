@@ -28,7 +28,7 @@ export function Address(props) {
         onClick={() => deleteAddress(address)}
         className={styles.deleteAddressButton}
       >
-        X
+        ⨉
       </div>
     </div>
   );

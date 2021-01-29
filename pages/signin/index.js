@@ -6,6 +6,7 @@ import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import { Navigation } from "../../components/Navigation";
 import { NavMenu } from "../../components/NavMenu";
+import { Title } from "../../components/Title";
 
 const INITIAL_STATE = {
   email: "",
@@ -46,7 +47,7 @@ export default function SignIn() {
       </Head>
       <Navigation />
       <main className={styles.main}>
-        <h1 className={styles.title}>MODA BELLA</h1>
+        <Title />
         <NavMenu></NavMenu>
         <form className={styles.signinForm} onSubmit={onSubmit}>
           <div className={styles.signinItem}>

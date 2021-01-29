@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { auth } from "../../config/firebase";
 import { db } from "../../config/firebase";
 import { useRouter } from "next/router";
+import { Title } from "../../components/Title";
 
 export default function SignUp() {
   return (
@@ -17,9 +18,7 @@ export default function SignUp() {
       </Head>
       <Navigation />
       <main className={styles.main}>
-        <Link href="/">
-          <h1 className={styles.title}>MODA BELLA</h1>
-        </Link>
+        <Title />
         <NavMenu></NavMenu>
         <SignUpForm />
       </main>

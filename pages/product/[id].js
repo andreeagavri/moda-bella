@@ -8,6 +8,8 @@ import { ProductGridItem } from "../../components/ProductGridItem";
 import { getPriceString } from "../../components/ProductGridItem";
 import Link from "next/link";
 import firebase from "firebase/app";
+import { Title } from "../../components/Title";
+import { CartPreview } from "../../components/CartPreview";
 export default function Product() {
   const router = useRouter();
   const { id } = router.query;
@@ -16,15 +18,30 @@ export default function Product() {
   const [size, setSize] = useState("");
   const [showSizeWarning, setShowSizeWarning] = useState(false);
   const [userId, setUserId] = useState();
+  const [cartProducts, setCartProducts] = useState([]);
+  const [showCartPreview, setShowCartPreview] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUserId(user.uid);
+        getCartData(user.uid);
       }
     });
     return () => unsubscribe();
   }, []);
+
+  async function getCartData(userId) {
+    return db
+      .collection("carts")
+      .doc(userId)
+      .get()
+      .then((cartData) => {
+        if (cartData.data()) {
+          setCartProducts(cartData.data().products);
+        }
+      });
+  }
 
   async function handleAddToCart() {
     if (size === "") {
@@ -49,6 +66,8 @@ export default function Product() {
           .then(() => {
             setSize("");
             console.log("added product in empty cart");
+            getCartData(userId);
+            setShowCartPreview(true);
           })
           .catch((error) => {
             console.log(error);
@@ -77,6 +96,9 @@ export default function Product() {
             .then(() => {
               setSize("");
               console.log("update quantity for product in non-empty cart");
+
+              getCartData(userId);
+              setShowCartPreview(true);
             })
             .catch((error) => {
               console.log(error);
@@ -95,14 +117,14 @@ export default function Product() {
             .then(() => {
               setSize("");
               console.log("added unique product in non-empty cart");
+              getCartData(userId);
+              setShowCartPreview(true);
             })
             .catch((error) => {
               console.log(error);
             });
         }
       }
-    } else {
-      // If user is not logged in
     }
   }
 
@@ -123,6 +145,8 @@ export default function Product() {
     });
   }
   if (product) {
+    console.log(showCartPreview);
+    console.log(cartProducts);
     return (
       <div className={styles.container}>
         <Head>
@@ -131,9 +155,14 @@ export default function Product() {
         </Head>
         <Navigation />
         <main className={styles.main}>
-          <Link href="/">
-            <h1 className={styles.title}>MODA BELLA</h1>
-          </Link>
+          <Title />
+
+          {showCartPreview ? (
+            <CartPreview
+              products={cartProducts}
+              setShowCartPreview={setShowCartPreview}
+            />
+          ) : null}
 
           <div className={styles.productContainer}>
             <div className={styles.productImages}>
@@ -143,7 +172,7 @@ export default function Product() {
             <div className={styles.productInfo}>
               <h1>{product.title}</h1>
               <span>Culoare: {product.color}</span>
-              <span>Pret: {getPriceString(product.price)}</span>
+              <span>Preţ: {getPriceString(product.price)}</span>
               <div className={styles.sizes}>
                 <div
                   className={

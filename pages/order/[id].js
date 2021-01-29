@@ -9,6 +9,7 @@ import { Address } from "../../components/Address";
 import { OrderSummary } from "../../components/OrderSummary";
 import { ProductOrderItem } from "../../components/ProductOrderItem";
 import { AddressOrder } from "../../components/AddressOrder";
+import { Title } from "../../components/Title";
 
 export default function Order() {
   const router = useRouter();
@@ -62,7 +63,7 @@ export default function Order() {
         </Head>
         <Navigation />
         <main className={styles.main}>
-          <h1 className={styles.title}>MODA BELLA</h1>
+          <Title />
           <NavMenu></NavMenu>
           <h2 className={styles.pageTitle}>Comanda #{order.id.slice(0, 8)}</h2>
 

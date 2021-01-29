@@ -3,6 +3,7 @@ import styles from "../../styles/Home.module.css";
 import { Navigation } from "../../components/Navigation";
 import { useEffect, useState } from "react";
 import { NavMenu } from "../../components/NavMenu";
+import { Title } from "../../components/Title";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       </Head>
       <Navigation />
       <main className={styles.main}>
-        <h1 className={styles.title}>MODA BELLA</h1>
+        <Title />
         <NavMenu></NavMenu>
 
         <h1 className={styles.pageTitle}>Bella Card</h1>

@@ -6,6 +6,7 @@ import { Navigation } from "../components/Navigation";
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 import { NavMenu } from "../components/NavMenu";
+import { Title } from "../components/Title";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       </Head>
       <Navigation />
       <main className={styles.main}>
-        <h1 className={styles.title}>MODA BELLA</h1>
+        <Title />
         <NavMenu></NavMenu>
       </main>
     </div>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { NavMenu } from "../../components/NavMenu";
 import { FilterGroup } from "../../components/FilterGroup";
+import { Title } from "../../components/Title";
 export default function BrandPage() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -79,9 +80,7 @@ export default function BrandPage() {
       </Head>
       <Navigation />
       <main className={styles.main}>
-        <Link href="/">
-          <h1 className={styles.title}>MODA BELLA</h1>
-        </Link>
+        <Title />
         <NavMenu></NavMenu>
         <h1 className={styles.pageTitle}>{brandName}</h1>
 
@@ -99,7 +98,7 @@ export default function BrandPage() {
           className={styles.applyFiltersButton}
           onClick={() => applyFilters()}
         >
-          Aplicați filtrele
+          APLICAŢI FILTRELE
         </div>
 
         <div className={styles.grid}>

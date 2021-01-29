@@ -31,7 +31,7 @@ export function ProductCartItem(props) {
         onClick={() => removeFromCart(product)}
         className={styles.removeProduct}
       >
-        X
+        ⨉
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { Address } from "../../components/Address";
 import { OrderSummary } from "../../components/OrderSummary";
 import Link from "next/link";
 import { Card } from "../../components/Card";
+import { Title } from "../../components/Title";
 
 export default function User() {
   const [user, setUser] = useState();
@@ -113,7 +114,7 @@ export default function User() {
         </Head>
         <Navigation />
         <main className={styles.main}>
-          <h1 className={styles.title}>MODA BELLA</h1>
+          <Title />
           <NavMenu></NavMenu>
 
           <h1 className={styles.pageTitle}>Contul meu</h1>
