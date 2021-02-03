@@ -26,7 +26,7 @@ export default function Home() {
             className={styles.infoImage}
             src="https://moda-bella.s3.eu-west-3.amazonaws.com/icons/truck.png"
           />
-          <p classNames={styles.infoText}>
+          <p className={styles.infoText}>
             Livare până în faţa uşii tale, în 48h
           </p>
         </div>
@@ -35,7 +35,7 @@ export default function Home() {
             className={styles.infoImage}
             src="https://moda-bella.s3.eu-west-3.amazonaws.com/icons/return-box.png"
           />
-          <p classNames={styles.infoText}>
+          <p className={styles.infoText}>
             Returnează gratuit produsele în limita a 30 de zile.
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function Home() {
             className={styles.infoImage}
             src="https://moda-bella.s3.eu-west-3.amazonaws.com/icons/contact.png"
           />
-          <p classNames={styles.infoText}>
+          <p className={styles.infoText}>
             Telefon: 0745 190 765
             <br />
             E-mail: contact@modabella.ro

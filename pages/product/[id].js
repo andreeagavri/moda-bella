@@ -10,6 +10,7 @@ import Link from "next/link";
 import firebase from "firebase/app";
 import { Title } from "../../components/Title";
 import { CartPreview } from "../../components/CartPreview";
+import { NavMenu } from "../../components/NavMenu";
 export default function Product() {
   const router = useRouter();
   const { id } = router.query;
@@ -164,6 +165,7 @@ export default function Product() {
             />
           ) : null}
 
+          <NavMenu />
           <div className={styles.productContainer}>
             <div className={styles.productImages}>
               <img className={styles.productImg} src={product.photos[0]}></img>
