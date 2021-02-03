@@ -12,6 +12,7 @@ import { AddressForm } from "../../components/AddressForm";
 import { getDiscountValue } from "../../utils/index";
 import { getPriceString } from "../../utils/index";
 import { Title } from "../../components/Title";
+import { PayPalButton } from "react-paypal-button-v2";
 
 export default function Cart() {
   const [user, setUser] = useState();
@@ -142,12 +143,15 @@ export default function Cart() {
   function placeOrder() {
     const address = addresses.find((adr) => adr.id === user.addressId);
 
+    let date = new Date();
+    date.setHours(date.getHours() + 2);
+
     db.collection("orders")
       .add({
         products: cartProducts,
         address: address,
         userId: user.uid,
-        date: new Date().toISOString().slice(0, 16).replace("T", " "),
+        date: date.toISOString().slice(0, 16).replace("T", " "),
         status: "În curs de procesare",
         discount: getPriceString(discount),
         total: getPriceString(totalWithDiscount),
@@ -314,13 +318,23 @@ export default function Cart() {
             />
           ) : null}
 
-          <button
+          {/* <button
             disabled={isOrderInvalid}
             className={styles.placeOrderButton}
             onClick={placeOrder}
           >
             PLASEAZĂ COMANDA
-          </button>
+          </button> */}
+          <PayPalButton
+            amount="0.01"
+            onSuccess={(details, data) => {
+              placeOrder();
+            }}
+            options={{
+              clientId:
+                "AWn7m8X6InffKImqACF-Ryg-SH3_GUUTKgE7HkqQNvKjDjWxFLXnhMkwudlgVXO005FPZt9UkAneB7O7",
+            }}
+          />
         </main>
       </div>
     );
