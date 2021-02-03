@@ -819,3 +819,30 @@
   font-size: 13px;
   font-weight: 400;
 }
+
+.carouselContainer {
+  margin-top: 50px;
+  width: 80%;
+  max-width: 900px;
+  cursor: pointer;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  width: 500px;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.infoImage {
+  height: 100px;
+  margin-right: 40px;
+}
+
+.infoText {
+  text-align: left;
+}

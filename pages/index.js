@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 import { NavMenu } from "../components/NavMenu";
 import { Title } from "../components/Title";
+import { CarouselModaBella } from "../components/Carousel";
 
 export default function Home() {
   return (
@@ -19,6 +20,36 @@ export default function Home() {
       <main className={styles.main}>
         <Title />
         <NavMenu></NavMenu>
+        <CarouselModaBella />
+        <div className={styles.infoItem}>
+          <img
+            className={styles.infoImage}
+            src="https://moda-bella.s3.eu-west-3.amazonaws.com/icons/truck.png"
+          />
+          <p classNames={styles.infoText}>
+            Livare până în faţa uşii tale, în 48h
+          </p>
+        </div>
+        <div className={styles.infoItem}>
+          <img
+            className={styles.infoImage}
+            src="https://moda-bella.s3.eu-west-3.amazonaws.com/icons/return-box.png"
+          />
+          <p classNames={styles.infoText}>
+            Returnează gratuit produsele în limita a 30 de zile.
+          </p>
+        </div>
+        <div className={styles.infoItem}>
+          <img
+            className={styles.infoImage}
+            src="https://moda-bella.s3.eu-west-3.amazonaws.com/icons/contact.png"
+          />
+          <p classNames={styles.infoText}>
+            Telefon: 0745 190 765
+            <br />
+            E-mail: contact@modabella.ro
+          </p>
+        </div>
       </main>
     </div>
   );
