@@ -1,5 +1,7 @@
 import styles from "../styles/Home.module.css";
 
+// Component for the Bella Card image, takes the number of points
+// as input and renders a differente card based on them
 export function Card(props) {
   const { points } = props;
 

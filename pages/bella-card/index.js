@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { NavMenu } from "../../components/NavMenu";
 import { Title } from "../../components/Title";
 
-export default function Home() {
+// Component for the bella card information page.
+export default function BellaCard() {
   return (
     <div className={styles.container}>
       <Head>

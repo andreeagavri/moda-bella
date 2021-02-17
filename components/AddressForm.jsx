@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   phone: "",
 };
 
+// Component for the form with the address details
 export function AddressForm(props) {
   const { setShowAddressForm, saveAddress } = props;
   const [addressItems, setAddressItems] = useState(INITIAL_STATE);

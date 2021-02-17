@@ -1,6 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 
+// Navigation component for choosing between clothes categories
 export function NavMenu() {
   return (
     <div className={styles.navMenu}>
@@ -23,8 +24,8 @@ export function NavMenu() {
           <button className={styles.dropbtn}>Accesorii</button>
         </Link>
         <div className={styles.dropdownContent}>
-          <Link href={"/accesorii/genti"}>Genti</Link>
-          <Link href={"/accesorii/esarfe"}>Esarfe</Link>
+          <Link href={"/accesorii/genti"}>Genţi</Link>
+          <Link href={"/accesorii/esarfe"}>Eşarfe</Link>
           <Link href={"/accesorii/bijuterii"}>Bijuterii</Link>
         </div>
       </div>

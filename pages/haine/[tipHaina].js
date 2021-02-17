@@ -12,6 +12,7 @@ import { FilterGroup } from "../../components/FilterGroup";
 import { capitalize } from "../../utils";
 import { Title } from "../../components/Title";
 
+// Component for a grid view page for certain types of clothing
 export default function Haine() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);

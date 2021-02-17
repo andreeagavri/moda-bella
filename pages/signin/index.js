@@ -14,6 +14,8 @@ const INITIAL_STATE = {
   error: null,
 };
 
+// Page for signing in the user, it contains the sign in form and
+// validation
 export default function SignIn() {
   const [credentials, setCredentials] = useState(INITIAL_STATE);
   const router = useRouter();

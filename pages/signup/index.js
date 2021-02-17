@@ -9,6 +9,8 @@ import { db } from "../../config/firebase";
 import { useRouter } from "next/router";
 import { Title } from "../../components/Title";
 
+// Page for singing up the user. It contains a form to complete
+// the necessary details and some validation
 export default function SignUp() {
   return (
     <div className={styles.container}>

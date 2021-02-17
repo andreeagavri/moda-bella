@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import { NavMenu } from "../../components/NavMenu";
 import { FilterGroup } from "../../components/FilterGroup";
 import { Title } from "../../components/Title";
+
+// Component for a grid view page for a certain clothing brand
 export default function BrandPage() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -35,6 +37,7 @@ export default function BrandPage() {
     setFilteredProducts(filteredProducts);
   }
 
+  // Use slugs because names have apostrophes and spaces
   const slugToBrand = {
     levis: "Levi's",
     only: "Only",
@@ -56,6 +59,7 @@ export default function BrandPage() {
     brandName = slugToBrand[brand];
   }
 
+  // Get only the products of a certain brand from firebase
   useEffect(() => {
     if (brandName) {
       const unsubscribe = db

@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
+// The Moda Bella title on every page
 export function Title() {
   return (
     <Link href="/">

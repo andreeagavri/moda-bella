@@ -1,6 +1,10 @@
 import styles from "../styles/Home.module.css";
 import { ColorSwatch } from "../components/ColorSwatch";
 
+// Component used to filter by price range and colors
+// The color components consists of a list of ColorSwatch components
+// The price range consists of two inputs for the low and high ends
+// The filter group elements can be collapsed or expanded
 export function FilterGroup(props) {
   const {
     showColorSwatches,
@@ -45,7 +49,6 @@ export function FilterGroup(props) {
   };
 
   function changePriceRange(event, idx) {
-    const number = event.target.value;
     let newPriceRange = [priceRange[0], priceRange[1]];
     newPriceRange[idx] = parseInt(event.target.value);
 

@@ -12,7 +12,8 @@ import { FilterGroup } from "../../components/FilterGroup";
 import { capitalize } from "../../utils";
 import { Title } from "../../components/Title";
 
-export default function Haine() {
+// Component for a grid view page of a certain accessory category
+export default function Accesorii() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filterColors, setFilterColors] = useState([]);
@@ -39,6 +40,23 @@ export default function Haine() {
 
   const router = useRouter();
   const { accesorii } = router.query;
+
+  useEffect(() => {
+    if (accesorii) {
+      const unsubscribe = db
+        .collection("products")
+        .where("type", "==", accesorii)
+        .onSnapshot((snap) => {
+          const dbProducts = snap.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setProducts(dbProducts);
+          setFilteredProducts(dbProducts);
+        });
+      return () => unsubscribe();
+    }
+  }, [accesorii]);
 
   return (
     <div className={styles.container}>

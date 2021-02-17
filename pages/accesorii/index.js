@@ -9,13 +9,48 @@ import { NavMenu } from "../../components/NavMenu";
 import { FilterGroup } from "../../components/FilterGroup";
 import { Title } from "../../components/Title";
 
-export default function ToateHainele() {
+// Component for the grid view page containing all accessories
+export default function ToateAccesoriile() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filterColors, setFilterColors] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [showColorSwatches, setShowColorSwatches] = useState(false);
   const [showPriceRange, setShowPriceRange] = useState(false);
+
+  function applyFilters() {
+    let filteredProducts = products.filter((prod) => {
+      if (filterColors.length === 0) {
+        return true;
+      }
+      if (filterColors.includes(prod.color)) {
+        return true;
+      }
+      return false;
+    });
+
+    filteredProducts = filteredProducts.filter(
+      (prod) => prod.price >= priceRange[0] && prod.price <= priceRange[1]
+    );
+    setFilteredProducts(filteredProducts);
+  }
+
+  useEffect(() => {
+    if (products.length === 0) {
+      const unsubscribe = db
+        .collection("products")
+        .where("type", "in", ["genti", "esarfe", "bijuterii"])
+        .onSnapshot((snap) => {
+          const dbProducts = snap.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setProducts(dbProducts);
+          setFilteredProducts(dbProducts);
+        });
+      return () => unsubscribe();
+    }
+  }, [products]);
 
   return (
     <div className={styles.container}>

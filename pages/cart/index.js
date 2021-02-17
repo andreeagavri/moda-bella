@@ -14,6 +14,7 @@ import { getPriceString } from "../../utils/index";
 import { Title } from "../../components/Title";
 import { PayPalButton } from "react-paypal-button-v2";
 
+// Component for the shopping cart page
 export default function Cart() {
   const [user, setUser] = useState();
   const [cartProducts, setCartProducts] = useState();
@@ -58,6 +59,7 @@ export default function Cart() {
       });
   }
 
+  // Get information about the user, cart data and address data
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -70,6 +72,7 @@ export default function Cart() {
     return () => unsubscribe();
   }, []);
 
+  // Modify the product dropdown to update its quantity
   function updateQuantity(e, product) {
     const newQuantity = e.target.value;
     const idx = cartProducts.findIndex(
@@ -91,6 +94,7 @@ export default function Cart() {
       });
   }
 
+  // Click the X near a product to remove it
   function removeFromCart(product) {
     const idx = cartProducts.findIndex(
       (p) => p.id === product.id && p.size === product.size
@@ -111,6 +115,7 @@ export default function Cart() {
       });
   }
 
+  // Add the user points after paying
   function addPointsToUser(total) {
     db.collection("users")
       .doc(user.uid)
@@ -125,6 +130,7 @@ export default function Cart() {
       });
   }
 
+  // Clear the cart after paying
   function clearCart() {
     db.collection("carts")
       .doc(user.uid)
@@ -140,6 +146,7 @@ export default function Cart() {
       });
   }
 
+  // Register the order inside firebase
   function placeOrder() {
     const address = addresses.find((adr) => adr.id === user.addressId);
 
@@ -166,10 +173,12 @@ export default function Cart() {
       });
   }
 
+  // Show/hide the address form after clicking on a button
   function toggleAddAddress() {
     setShowAddressForm(!showAddressForm);
   }
 
+  // Click on an address to make it the primary one
   function updateSelectedAddress(user, addressId) {
     db.collection("users")
       .doc(user.uid)
@@ -182,6 +191,7 @@ export default function Cart() {
       });
   }
 
+  // Save the new address from the form
   function saveAddress(address) {
     if (addresses.length === 0) {
       db.collection("addresses")
@@ -214,6 +224,8 @@ export default function Cart() {
     }
   }
 
+  // Delete one of the available addresses
+  // If it was the selected address. The user will have to select a new one to complete the order
   function deleteAddress(address) {
     let newSelectedAddressId = user.addressId;
     if (newSelectedAddressId === address.id) {
@@ -244,6 +256,7 @@ export default function Cart() {
     user !== undefined &&
     cartProducts.length > 0
   ) {
+    // Compute the total and the discount
     let totalWithoutDiscount = 0;
 
     for (const product of cartProducts) {
@@ -318,13 +331,6 @@ export default function Cart() {
             />
           ) : null}
 
-          {/* <button
-            disabled={isOrderInvalid}
-            className={styles.placeOrderButton}
-            onClick={placeOrder}
-          >
-            PLASEAZĂ COMANDA
-          </button> */}
           <PayPalButton
             amount="0.01"
             onSuccess={(details, data) => {
@@ -338,7 +344,8 @@ export default function Cart() {
         </main>
       </div>
     );
-  } else if (cartProducts !== undefined && cartProducts.length === 0)
+  } else if (cartProducts !== undefined && cartProducts.length === 0) {
+    // If the cart is empty
     return (
       <div className={styles.container}>
         <Head>
@@ -356,7 +363,7 @@ export default function Cart() {
         </main>
       </div>
     );
-  else {
+  } else {
     return null;
   }
 }

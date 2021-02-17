@@ -1,5 +1,7 @@
 import styles from "../styles/Home.module.css";
 
+// Component consisting of a single color used in the filter group
+// component for filtering by color
 export function ColorSwatch(props) {
   const { color, rgbColor, filterColors, setFilterColors } = props;
 

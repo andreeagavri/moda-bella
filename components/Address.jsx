@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
+// Component for a single address with a delete button
 export function Address(props) {
   const {
     address,

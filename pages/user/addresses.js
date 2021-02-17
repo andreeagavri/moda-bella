@@ -11,6 +11,7 @@ import { OrderSummary } from "../../components/OrderSummary";
 import Link from "next/link";
 import { Title } from "../../components/Title";
 
+// Page showing the available addresses for the user
 export default function Addresses() {
   const [user, setUser] = useState();
   const [addresses, setAddresses] = useState([]);

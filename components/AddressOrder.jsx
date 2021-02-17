@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
+// Component for the address details on the order page
 export function AddressOrder(props) {
   const { address } = props;
 

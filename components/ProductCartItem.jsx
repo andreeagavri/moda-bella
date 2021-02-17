@@ -1,6 +1,9 @@
 import styles from "../styles/Home.module.css";
 import { getPriceString } from "../utils/index";
 
+// Component showing a cart item on the shopping cart page
+// The product quantity can be increased (up to 5 items) and
+// it can also be removed from the cart by clicking on the X
 export function ProductCartItem(props) {
   const { product, updateQuantity, removeFromCart } = props;
   return (

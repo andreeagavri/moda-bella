@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import { getPriceString } from "../utils/index";
 
+// Component for a single item from the order summary on the order page
 export function ProductOrderItem(props) {
   const { product } = props;
   return (

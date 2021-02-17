@@ -11,6 +11,10 @@ import firebase from "firebase/app";
 import { Title } from "../../components/Title";
 import { CartPreview } from "../../components/CartPreview";
 import { NavMenu } from "../../components/NavMenu";
+
+// Component for the single product details page. On it
+// the user can select the size and then add it to the cart
+// Adding to the cart without selecting the size will prompt the user to do so.
 export default function Product() {
   const router = useRouter();
   const { id } = router.query;
@@ -21,6 +25,7 @@ export default function Product() {
   const [userId, setUserId] = useState();
   const [cartProducts, setCartProducts] = useState([]);
   const [showCartPreview, setShowCartPreview] = useState(false);
+  const [showSizes, setShowSizes] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -142,12 +147,18 @@ export default function Product() {
           id: id,
           ...doc.data(),
         });
+        if (
+          doc.data().type === "genti" ||
+          doc.data().type === "esarfe" ||
+          doc.data().type === "bijuterii"
+        ) {
+          setSize("One Size");
+          setShowSizes(false);
+        }
       }
     });
   }
   if (product) {
-    console.log(showCartPreview);
-    console.log(cartProducts);
     return (
       <div className={styles.container}>
         <Head>
@@ -175,48 +186,50 @@ export default function Product() {
               <h1>{product.title}</h1>
               <span>Culoare: {product.color}</span>
               <span>Preţ: {getPriceString(product.price)}</span>
-              <div className={styles.sizes}>
-                <div
-                  className={
-                    size === "XS"
-                      ? styles.productSizeSelected
-                      : styles.productSize
-                  }
-                  onClick={() => handleSize("XS")}
-                >
-                  XS
+              {showSizes ? (
+                <div className={styles.sizes}>
+                  <div
+                    className={
+                      size === "XS"
+                        ? styles.productSizeSelected
+                        : styles.productSize
+                    }
+                    onClick={() => handleSize("XS")}
+                  >
+                    XS
+                  </div>
+                  <div
+                    className={
+                      size === "S"
+                        ? styles.productSizeSelected
+                        : styles.productSize
+                    }
+                    onClick={() => handleSize("S")}
+                  >
+                    S
+                  </div>
+                  <div
+                    className={
+                      size === "M"
+                        ? styles.productSizeSelected
+                        : styles.productSize
+                    }
+                    onClick={() => handleSize("M")}
+                  >
+                    M
+                  </div>
+                  <div
+                    className={
+                      size === "L"
+                        ? styles.productSizeSelected
+                        : styles.productSize
+                    }
+                    onClick={() => handleSize("L")}
+                  >
+                    L
+                  </div>
                 </div>
-                <div
-                  className={
-                    size === "S"
-                      ? styles.productSizeSelected
-                      : styles.productSize
-                  }
-                  onClick={() => handleSize("S")}
-                >
-                  S
-                </div>
-                <div
-                  className={
-                    size === "M"
-                      ? styles.productSizeSelected
-                      : styles.productSize
-                  }
-                  onClick={() => handleSize("M")}
-                >
-                  M
-                </div>
-                <div
-                  className={
-                    size === "L"
-                      ? styles.productSizeSelected
-                      : styles.productSize
-                  }
-                  onClick={() => handleSize("L")}
-                >
-                  L
-                </div>
-              </div>
+              ) : null}
               <p
                 style={{
                   alignSelf: "center",

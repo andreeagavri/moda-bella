@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import { getPriceString } from "../utils";
 
+// Component with the details of an order shown on the order page
 export function OrderSummary(props) {
   const { order } = props;
   return (

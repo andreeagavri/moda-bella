@@ -32,6 +32,7 @@ const imgNames = {
     "https://moda-bella.s3.eu-west-3.amazonaws.com/carousel/missguided.jpg",
 };
 
+// Component for the home page carousel using the react-image-gallery package
 export function CarouselModaBella() {
   const router = useRouter();
 

@@ -9,6 +9,8 @@ import { NavMenu } from "../components/NavMenu";
 import { Title } from "../components/Title";
 import { CarouselModaBella } from "../components/Carousel";
 
+// Home page showing the general details and a carousel with
+// promotions
 export default function Home() {
   return (
     <div className={styles.container}>

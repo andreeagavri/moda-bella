@@ -11,6 +11,7 @@ import { ProductOrderItem } from "../../components/ProductOrderItem";
 import { AddressOrder } from "../../components/AddressOrder";
 import { Title } from "../../components/Title";
 
+// Component for the order details page. Available for each past order
 export default function Order() {
   const router = useRouter();
   const { id } = router.query;
@@ -72,6 +73,7 @@ export default function Order() {
               <div>Plasată pe {order.date}</div>
               <div>Status: {order.status}</div>
               <div>Discount Bella Card: {order.discount}</div>
+              <div>Puncte primite: {parseInt(order.total)}</div>
               <div>Total: {order.total}</div>
             </div>
             <AddressOrder address={order.address} />

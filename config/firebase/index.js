@@ -14,10 +14,12 @@ const firebaseConfig = {
   measurementId: "G-5BJC94VNJY",
 };
 
+// Initialize only once
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
+// Export the necessary functionalities of firebase
 const app = firebase.app();
 const auth = firebase.auth();
 const db = firebase.firestore();

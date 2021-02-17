@@ -3,6 +3,10 @@ import Link from "next/link";
 export function getPriceString(price) {
   return price.toString().replace(".", ",") + " RON";
 }
+
+// A component showing the preview of a single product inside
+// the grid view page with several products. Clicking on it
+// redirects to the product page.
 export function ProductGridItem(props) {
   const { product } = props;
 

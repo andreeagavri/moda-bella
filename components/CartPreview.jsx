@@ -2,6 +2,9 @@ import { CartPreviewitem } from "./CartPreviewItem";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
+// Component for the shopping cart preview which shows up
+// in the top-right corner after adding a product to it
+// It consists of a list of CartPreviewItems
 export function CartPreview(props) {
   const { products, setShowCartPreview } = props;
 

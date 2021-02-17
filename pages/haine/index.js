@@ -9,6 +9,7 @@ import { NavMenu } from "../../components/NavMenu";
 import { FilterGroup } from "../../components/FilterGroup";
 import { Title } from "../../components/Title";
 
+// Component for a grid view page with all the available clothes
 export default function ToateHainele() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);

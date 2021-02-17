@@ -10,6 +10,8 @@ import Link from "next/link";
 import { Card } from "../../components/Card";
 import { Title } from "../../components/Title";
 
+// Page showing the user details, their card and links to their
+// addresses and orders
 export default function User() {
   const [user, setUser] = useState();
   const [addresses, setAddresses] = useState([]);

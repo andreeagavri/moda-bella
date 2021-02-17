@@ -1,6 +1,8 @@
 import styles from "../styles/Home.module.css";
 import { getPriceString } from "../utils";
 
+// Component for a single item shown inside the CartPreview
+// component
 export function CartPreviewitem(props) {
   const { product } = props;
   return (

@@ -8,6 +8,7 @@ import { Address } from "../../components/Address";
 import { OrderSummary } from "../../components/OrderSummary";
 import { Title } from "../../components/Title";
 
+// Page showing the user's past orders
 export default function Orders() {
   const [user, setUser] = useState();
   const [orders, setOrders] = useState([]);

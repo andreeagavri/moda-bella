@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { auth, db } from "../../config/firebase";
 
+// Top navigation bar, contains an authentification link if the
+// user isn't logged in. Otherwise, it displays links to the user page,
+// shopping cart, and to log out.
 export function Navigation() {
   const [user, setUser] = useState();
   async function getUserAdditionalData(user) {
@@ -16,6 +19,8 @@ export function Navigation() {
         }
       });
   }
+
+  // Get user details
   useEffect(() => {
     const unsubscribeAfterAuth = auth.onAuthStateChanged((user) => {
       if (user) {
