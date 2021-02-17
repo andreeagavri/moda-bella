@@ -20,9 +20,17 @@ export default function Accesorii() {
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [showColorSwatches, setShowColorSwatches] = useState(false);
   const [showPriceRange, setShowPriceRange] = useState(false);
+  const [sortPrice, setSortPrice] = useState(0);
 
   function applyFilters() {
-    let filteredProducts = products.filter((prod) => {
+    let sortedProducts = JSON.parse(JSON.stringify(products));
+    if (sortPrice === 1) {
+      sortedProducts = sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (sortPrice === -1) {
+      sortedProducts = sortedProducts.sort((a, b) => b.price - a.price);
+    }
+
+    let filteredProducts = sortedProducts.filter((prod) => {
       if (filterColors.length === 0) {
         return true;
       }
@@ -53,6 +61,9 @@ export default function Accesorii() {
           }));
           setProducts(dbProducts);
           setFilteredProducts(dbProducts);
+          setFilterColors([]);
+          setPriceRange([0, 1000]);
+          setSortPrice(0);
         });
       return () => unsubscribe();
     }
@@ -79,6 +90,8 @@ export default function Accesorii() {
           setShowPriceRange={setShowPriceRange}
           priceRange={priceRange}
           setPriceRange={setPriceRange}
+          sortPrice={sortPrice}
+          setSortPrice={setSortPrice}
         />
         <div
           className={styles.applyFiltersButton}

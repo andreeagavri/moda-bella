@@ -15,6 +15,8 @@ export function FilterGroup(props) {
     setShowPriceRange,
     priceRange,
     setPriceRange,
+    sortPrice,
+    setSortPrice,
   } = props;
 
   const availableColors = [
@@ -84,22 +86,51 @@ export function FilterGroup(props) {
         {showPriceRange ? "Preț ▲" : "Preț ▼"}
       </div>
       {showPriceRange ? (
-        <div className={styles.priceRangeContainer}>
-          <input
-            name="lowerPrice"
-            type="number"
-            value={priceRange[0]}
-            className={styles.priceRangeInput}
-            onChange={(e) => changePriceRange(e, 0)}
-          />
-          <div className={styles.priceRangeLine} />
-          <input
-            name="higherPrice"
-            type="number"
-            value={priceRange[1]}
-            className={styles.priceRangeInput}
-            onChange={(e) => changePriceRange(e, 1)}
-          />
+        <div className={styles.priceRangeAndSort}>
+          <div className={styles.priceRangeContainer}>
+            <input
+              name="lowerPrice"
+              type="number"
+              value={priceRange[0]}
+              className={styles.priceRangeInput}
+              onChange={(e) => changePriceRange(e, 0)}
+            />
+            <div className={styles.priceRangeLine} />
+            <input
+              name="higherPrice"
+              type="number"
+              value={priceRange[1]}
+              className={styles.priceRangeInput}
+              onChange={(e) => changePriceRange(e, 1)}
+            />
+          </div>
+          <div className={styles.priceSortContainer}>
+            <div> Sortează</div>
+            <div
+              className={
+                sortPrice === -1 ? styles.sortButtonSelected : styles.sortButton
+              }
+              onClick={(e) => setSortPrice(-1)}
+            >
+              ▼
+            </div>
+            <div
+              className={
+                sortPrice === 0 ? styles.sortButtonSelected : styles.sortButton
+              }
+              onClick={(e) => setSortPrice(0)}
+            >
+              ▬
+            </div>
+            <div
+              className={
+                sortPrice === 1 ? styles.sortButtonSelected : styles.sortButton
+              }
+              onClick={(e) => setSortPrice(1)}
+            >
+              ▲
+            </div>
+          </div>
         </div>
       ) : null}
     </div>
