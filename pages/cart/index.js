@@ -331,16 +331,18 @@ export default function Cart() {
             />
           ) : null}
 
-          <PayPalButton
-            amount="0.01"
-            onSuccess={(details, data) => {
-              placeOrder();
-            }}
-            options={{
-              clientId:
-                "AWn7m8X6InffKImqACF-Ryg-SH3_GUUTKgE7HkqQNvKjDjWxFLXnhMkwudlgVXO005FPZt9UkAneB7O7",
-            }}
-          />
+          {addresses.length > 0 ? (
+            <PayPalButton
+              amount="0.01"
+              onSuccess={(details, data) => {
+                placeOrder();
+              }}
+              options={{
+                clientId:
+                  "AWn7m8X6InffKImqACF-Ryg-SH3_GUUTKgE7HkqQNvKjDjWxFLXnhMkwudlgVXO005FPZt9UkAneB7O7",
+              }}
+            />
+          ) : null}
         </main>
       </div>
     );

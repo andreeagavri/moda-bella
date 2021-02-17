@@ -78,13 +78,28 @@ function SignUpForm() {
     }));
   };
 
+  function isPasswordNotComplex(password) {
+    if (!password.match(/[0-9]/)) {
+      return true;
+    }
+    if (!password.match(/[A-Z]/)) {
+      return true;
+    }
+    if (password.length < 8) {
+      return true;
+    }
+
+    return false;
+  }
+
   const { username, email, passwordOne, passwordTwo, error } = credentials;
 
   const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === "" ||
     email === "" ||
-    username === "";
+    username === "" ||
+    isPasswordNotComplex(passwordOne);
 
   return (
     <form onSubmit={onSubmit} className={styles.signinForm}>
@@ -111,7 +126,9 @@ function SignUpForm() {
       </div>
 
       <div className={styles.signinItem}>
-        <span className={styles.signinLabel}>Parolă</span>
+        <span className={styles.signinLabel}>
+          Parolă (min. 8 caractere, literă mare, cifră)
+        </span>
         <input
           name="passwordOne"
           value={passwordOne}
